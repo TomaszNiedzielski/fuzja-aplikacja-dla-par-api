@@ -68,13 +68,11 @@ class MessageController extends Controller
         event(new NewMessageEvent($message->id, $message_created_at, $message->from, $message->text, $message->to, $user->name, $message->image));
 
         // new notification
-        $users = User::where('id', 2)->get();
-        //$users = array($users);
+        $partner = User::where('id', $message->to)->get();
 
-        //Notification::route('ExpoChannel', $users)->notify();
-        Notification::send($users, new NewMessageNotification());
+        Notification::send($partner, new NewMessageNotification());
 
-        return response()->json($users);
+        return response()->json($partner);
     }
 
     public function loadUnreadMessages(Request $request)
