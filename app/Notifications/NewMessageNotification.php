@@ -12,6 +12,11 @@ class NewMessageNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 
+    public function __construct($message)
+    {
+        $this->body = $message->text;
+    }
+
     public function via($notifiable)
     {
         return [ExpoChannel::class];
@@ -22,9 +27,9 @@ class NewMessageNotification extends Notification implements ShouldQueue
         return ExpoMessage::create()
             ->badge(1)
             ->enableSound()
-            ->title("Congratulations!")
+            ->title("New message!")
             ->setChannelId('chat-messages')
-            ->body("You have new message!");
+            ->body($this->body);
     }
 
     public function toArray($notifiable)

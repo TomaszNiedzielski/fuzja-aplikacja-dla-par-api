@@ -38,7 +38,7 @@ class DesktopController extends Controller
         
         if(isset($fileNameToStore))
         {
-            DB::table('images')->updateOrInsert(
+            DB::table('desktop')->updateOrInsert(
                 ['user_id' => $user->id],
                 ['desktop_background' => $fileNameToStore]
             );
@@ -48,7 +48,7 @@ class DesktopController extends Controller
     public function getDesktopBackgroundName(Request $request) {
         $user = Auth::user();
 
-        $desktop_background_name = DB::table('images')
+        $desktop_background_name = DB::table('desktop')
                                 ->where('user_id', $user->id)
                                 ->select('desktop_background')
                                 ->get();

@@ -70,7 +70,7 @@ class MessageController extends Controller
         // new notification
         $partner = User::where('id', $message->to)->get();
 
-        Notification::send($partner, new NewMessageNotification());
+        Notification::send($partner, new NewMessageNotification($message));
 
         return response()->json($partner);
     }
