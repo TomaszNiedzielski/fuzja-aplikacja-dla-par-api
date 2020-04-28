@@ -12,6 +12,8 @@ class NewMessageNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 
+    public $body;
+
     public function __construct($message)
     {
         $this->body = $message->text;
