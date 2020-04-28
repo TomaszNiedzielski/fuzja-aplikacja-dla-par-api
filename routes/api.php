@@ -30,7 +30,6 @@ Route::group(['middleware' => ['auth:api']], function() {
     Route::post('mark-messages-as-read', 'MessageController@markMessagesAsRead');
     Route::post('send-image', 'MessageController@sendImage');
 
-
     // desktop
     Route::post('get-desktop-background-name', 'DesktopController@getDesktopBackgroundName');
     Route::post('set-desktop-background', 'DesktopController@createDesktopBackground');
