@@ -2,6 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Log;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -39,4 +41,8 @@ Route::group(['middleware' => ['auth:api']], function() {
     Route::post('load-gallery', 'GalleryController@loadGallery');
     Route::post('delete-image-from-gallery', 'GalleryController@deleteImage');
     Route::post('update-description', 'GalleryController@updateDescription');
+
+    // pusher
+    Route::post('broadcasting-auth', 'BroadcastingController@broadcastingAuth');
+
 });
