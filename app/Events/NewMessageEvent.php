@@ -43,7 +43,7 @@ class NewMessageEvent implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new Channel('chat.'.$this->partner_id);
+        return new Channel('presence-chat.'.$this->partner_id);
     }
     public function broadcastWith()
     {
