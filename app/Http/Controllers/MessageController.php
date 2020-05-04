@@ -13,6 +13,9 @@ use Illuminate\Notifications\ChannelManager;
 use App\User;
 use Illuminate\Support\Facades\Notification;
 
+use Illuminate\Support\Facades\Log;
+
+
 class MessageController extends Controller
 {
     public function load(Request $request)
@@ -41,14 +44,16 @@ class MessageController extends Controller
         }
 
         // update read
-        DB::table('messages')
+        $affected = DB::table('messages')
             ->where('to', $user->id) //tylko te do mnie
             ->where('read', 0)
             ->update([
                 'read' => 1
             ]);
 
-        event(new MarkMessagesAsReadEvent($user->partner_id));        
+        if($affected > 0) {
+            event(new MarkMessagesAsReadEvent($user->partner_id));
+        }
 
         return response($messages);
     }
@@ -98,14 +103,16 @@ class MessageController extends Controller
         }
 
         // update read
-        DB::table('messages')
+        $affected = DB::table('messages')
             ->where('to', $user->id) //tylko te do mnie
             ->where('read', 0)
             ->update([
                 'read' => 1
             ]);
-
-        event(new MarkMessagesAsReadEvent($user->partner_id));            
+        
+        if($affected > 0) {
+            event(new MarkMessagesAsReadEvent($user->partner_id));
+        }
 
         return response()->json($messages);
 
@@ -115,7 +122,7 @@ class MessageController extends Controller
     {
         $user = Auth::user();        
         
-        DB::table('messages')
+        $affected = DB::table('messages')
             ->where('to', $user->id) //tylko te do mnie
             ->where('read', 0)
             ->update([
@@ -123,7 +130,9 @@ class MessageController extends Controller
             ]);
 
         
-        event(new MarkMessagesAsReadEvent($user->partner_id));
+        if($affected > 0) {
+            event(new MarkMessagesAsReadEvent($user->partner_id));
+        }
 
         return response()->json('ok');
 
