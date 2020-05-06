@@ -141,7 +141,7 @@ class MessageController extends Controller
     public function sendImage(Request $request)
     {
         $this->validate($request, [
-            'photo' => 'image',
+            'photo' => 'image|max:10240',
         ]);
 
         $user = Auth::user();
@@ -195,7 +195,7 @@ class MessageController extends Controller
             $message_created_at = date('Y-m-d H:i:s');
             event(new NewMessageEvent($message->id, $message_created_at, $message->from, $message->text, $message->to, $user->name, $message->image));            
 
-            return response()->json($newMessages); //zwroc nazwe spowrotem
+            return response()->json($newMessages); //zwroc nazwe spowrotem 
         }
     }
 }
