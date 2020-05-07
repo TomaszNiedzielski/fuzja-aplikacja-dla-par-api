@@ -45,4 +45,7 @@ Route::group(['middleware' => ['auth:api']], function() {
     // pusher
     Route::post('broadcasting-auth', 'BroadcastingController@broadcastingAuth');
 
+    // user
+    Route::post('set-avatar-image', 'AvatarController@create');
+
 });
