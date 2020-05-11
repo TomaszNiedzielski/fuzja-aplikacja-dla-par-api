@@ -88,10 +88,18 @@ class RelationshipController extends Controller
                         ->select('id', 'name', 'email')
                         ->get();
 
+        $checkIfUserHasTypedSomePartnerEmail = DB::table('relationships')
+            ->where('user_id', $user->id)
+            ->get();
+        
+        if(!$checkIfUserHasTypedSomePartnerEmail->isEmpty()) {
+            $userHasTypedPartnerEmail = true;
+        }
+
         if(!$partner_data->isEmpty()) {
             return response()->json(array('partner_data' => $partner_data[0]));
         } else {
-            return response()->json('ja pierdole co za szajs');
+            return response()->json(array('userHasTypedPartnerEmail' => $userHasTypedPartnerEmail));
         }
     }
 }

@@ -97,9 +97,10 @@ class MessageController extends Controller
         foreach($messages as $message)
         {
             $message->user = DB::table('users')
-                            ->where('id', $message->from)
-                            ->select('id as _id', 'name')
-                            ->groupBy('id', 'name')
+                            ->where('users.id', $message->from)
+                            ->leftJoin('avatars', 'avatars.user_id', '=', 'users.id')
+                            ->select('users.id as _id', 'users.name', 'avatars.avatar_name as avatar')
+                            ->groupBy('users.id', 'users.name', 'avatars.avatar_name')
                             ->first();
         }
 
@@ -188,8 +189,9 @@ class MessageController extends Controller
             {
                 $newMessage->user = DB::table('users')
                                 ->where('id', $newMessage->from)
-                                ->select('id as _id', 'name')
-                                ->groupBy('id', 'name')
+                                ->leftJoin('avatars', 'avatars.user_id', '=', 'users.id')
+                                ->select('users.id as _id', 'users.name', 'avatars.avatar_name as avatar')
+                                ->groupBy('users.id', 'users.name', 'avatars.avatar_name')
                                 ->first();
             }
 
