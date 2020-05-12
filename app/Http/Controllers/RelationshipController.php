@@ -92,11 +92,13 @@ class RelationshipController extends Controller
             ->where('user_id', $user->id)
             ->get();
         
-        if(!$checkIfUserHasTypedSomePartnerEmail->isEmpty()) {
-            $userHasTypedPartnerEmail = true;
+        if(!$checkIfUserHasTypedSomePartnerEmail->isEmpty()) { // user typed e-mail
+            $userHasTypedPartnerEmail = 'true';
+        } else {
+            $userHasTypedPartnerEmail = 'false';
         }
 
-        if(!$partner_data->isEmpty()) {
+        if(!$partner_data->isEmpty()) { // partner data isset
             return response()->json(array('partner_data' => $partner_data[0]));
         } else {
             return response()->json(array('userHasTypedPartnerEmail' => $userHasTypedPartnerEmail));
