@@ -69,9 +69,24 @@ class MessageController extends Controller
         $message->text = $request->message;
         $message->save();
 
+        $partner_id = $message->to; // need that to make channel
+
+        $new_message = DB::table('messages')
+                    ->where('id', $message->id)
+                    ->select('id as _id', 'from', 'text', 'image', 'read', 'created_at as createdAt')
+                    ->groupBy('id', 'from', 'text', 'image', 'read', 'created_at')
+                    ->first();
+
+        // add user property to messages
+        $new_message->user = DB::table('users')
+                        ->where('users.id', $new_message->from)
+                        ->leftJoin('avatars', 'avatars.user_id', '=', 'users.id')
+                        ->select('users.id as _id', 'users.name', 'avatars.avatar_name as avatar')
+                        ->groupBy('users.id', 'users.name', 'avatars.avatar_name')
+                        ->first();
+
         // run event
-        $message_created_at = date('Y-m-d H:i:s');
-        event(new NewMessageEvent($message->id, $message_created_at, $message->from, $message->text, $message->to, $user->name, $message->image));
+        event(new NewMessageEvent($new_message, $partner_id));
 
         // new notification
         $partner = User::where('id', $message->to)->get();
@@ -178,27 +193,25 @@ class MessageController extends Controller
             $message->image = $api_image.$fileNameToStore;
             $message->save();
 
-            $newMessages = DB::table('messages')
+            $partner_id = $message->to; // need that to make channel            
+
+            $newMessage = DB::table('messages')
                     ->where('id', $message->id)
                     ->select('id as _id', 'from', 'image', 'read', 'created_at as createdAt')
                     ->groupBy('id', 'from', 'image', 'read', 'created_at')
-                    ->get();
+                    ->first();
             
             // add user property to messages
-            foreach($newMessages as $newMessage)
-            {
-                $newMessage->user = DB::table('users')
-                                ->where('id', $newMessage->from)
-                                ->leftJoin('avatars', 'avatars.user_id', '=', 'users.id')
-                                ->select('users.id as _id', 'users.name', 'avatars.avatar_name as avatar')
-                                ->groupBy('users.id', 'users.name', 'avatars.avatar_name')
-                                ->first();
-            }
+            $newMessage->user = DB::table('users')
+                            ->where('users.id', $newMessage->from)
+                            ->leftJoin('avatars', 'avatars.user_id', '=', 'users.id')
+                            ->select('users.id as _id', 'users.name', 'avatars.avatar_name as avatar')
+                            ->groupBy('users.id', 'users.name', 'avatars.avatar_name')
+                            ->first();
 
-            $message_created_at = date('Y-m-d H:i:s');
-            event(new NewMessageEvent($message->id, $message_created_at, $message->from, $message->text, $message->to, $user->name, $message->image));            
+            event(new NewMessageEvent($newMessage, $partner_id));
 
-            return response()->json($newMessages); //zwroc nazwe spowrotem 
+            return response()->json($newMessage); //zwroc nazwe spowrotem 
         }
     }
 }
