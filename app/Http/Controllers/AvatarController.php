@@ -54,4 +54,16 @@ class AvatarController extends Controller
             return response()->json(['avatar' => $fileNameToStore]);
         }
     }
+
+    public function loadPartnerAvatar(Request $request)
+    {
+        $user = Auth::user();
+        
+        $avatar = DB::table('avatars')
+            ->where('user_id', $user->partner_id)
+            ->select('avatar_name as avatarName')
+            ->first();
+
+        return response()->json($avatar);
+    }
 }
