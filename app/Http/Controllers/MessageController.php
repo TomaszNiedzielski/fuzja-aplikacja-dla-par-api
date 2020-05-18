@@ -5,8 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 use App\Message;
+
 use App\Events\NewMessageEvent;
 use App\Events\MarkMessagesAsReadEvent;
+use App\Events\UserIsTypingMessageEvent;
+
 use Illuminate\Support\Facades\Auth;
 use App\Notifications\NewMessageNotification;
 use Illuminate\Notifications\ChannelManager;
@@ -61,6 +64,7 @@ class MessageController extends Controller
 
     public function create(Request $request)
     {
+        // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! KURWA TU NIE MA ZADNEJ WALIDACJI WIADOMOSCI !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         $user = Auth::user();
 
         $message = new Message;
@@ -213,5 +217,14 @@ class MessageController extends Controller
 
             return response()->json($newMessage); //zwroc nazwe spowrotem 
         }
+    }
+
+    public function userIsTypingMessage()
+    {
+        $user = Auth::user();
+        
+        event(new UserIsTypingMessageEvent(/*$user->partner_id*/$user->id));
+
+        return response()->json('fuck off');
     }
 }

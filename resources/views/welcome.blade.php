@@ -64,32 +64,6 @@
         </style>
     </head>
     <body>
-        <form action="{{ route('image.upload.post') }}" method="POST" enctype="multipart/form-data">
-
-            
-
-            <div class="row">
-
-  
-
-                <div class="col-md-6">
-
-                    <input type="file" name="image" class="form-control">
-
-                </div>
-
-   
-
-                <div class="col-md-6">
-
-                    <button type="submit" class="btn btn-success">Upload</button>
-
-                </div>
-
-   
-
-            </div>
-
-        </form>
+        <img src="/storage/avatars/logo.png" />
     </body>
 </html>
