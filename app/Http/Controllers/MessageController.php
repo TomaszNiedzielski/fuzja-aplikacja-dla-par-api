@@ -223,7 +223,7 @@ class MessageController extends Controller
     {
         $user = Auth::user();
         
-        event(new UserIsTypingMessageEvent(/*$user->partner_id*/$user->id));
+        event(new UserIsTypingMessageEvent($user->partner_id));
 
         return response()->json('fuck off');
     }
