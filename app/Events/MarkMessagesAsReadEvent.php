@@ -33,7 +33,7 @@ class MarkMessagesAsReadEvent implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new Channel('MarkedMessagesAsRead.'.$this->partner_id);
+        return new Channel('presence-chat.'.$this->partner_id);
     }
 
     public function broadcastAs()
