@@ -31,7 +31,7 @@ class NewMessageNotification extends Notification implements ShouldQueue
             ->enableSound()
             ->title("New message!")
             ->setChannelId('chat-messages')
-            ->ttl(60)
+            //->ttl(60)
             ->body($this->body);
     }
 
