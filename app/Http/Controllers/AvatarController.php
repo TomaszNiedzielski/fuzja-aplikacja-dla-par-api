@@ -55,15 +55,20 @@ class AvatarController extends Controller
         }
     }
 
-    public function loadPartnerAvatar(Request $request)
+    public function loadCouplesAvatars(Request $request)
     {
         $user = Auth::user();
         
-        $avatar = DB::table('avatars')
+        $user_avatar = DB::table('avatars')
+            ->where('user_id', $user->id)
+            ->select('avatar_name as avatarName')
+            ->first();
+
+        $partner_avatar = DB::table('avatars')
             ->where('user_id', $user->partner_id)
             ->select('avatar_name as avatarName')
             ->first();
 
-        return response()->json($avatar);
+        return response()->json(['userAvatar' => $user_avatar, 'partnerAvatar' => $partner_avatar]);
     }
 }
