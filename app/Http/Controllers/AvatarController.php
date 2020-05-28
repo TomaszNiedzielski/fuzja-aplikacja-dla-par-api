@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Avatar;
 use DB;
+use Intervention\Image\ImageManagerStatic as Photo;
 
 class AvatarController extends Controller
 {
@@ -33,6 +34,14 @@ class AvatarController extends Controller
 
             // Upload Image
             $path = $request->file('photo')->storeAs('public/avatars', $fileNameToStore);
+
+            // resize the image
+            /*$thumbnailpath = public_path('storage/avatars/'.$fileNameToStore);
+            $img = Photo::make($thumbnailpath)->resize(80, 80, function($constraint) {
+                $constraint->aspectRatio();
+            });
+            $img->save($thumbnailpath);*/
+
         }
         
         //$api_image = 'http://10.0.2.2:8000/storage/avatars/';
