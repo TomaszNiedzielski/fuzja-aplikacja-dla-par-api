@@ -36,11 +36,11 @@ class AvatarController extends Controller
             $path = $request->file('photo')->storeAs('public/avatars', $fileNameToStore);
 
             // resize the image
-            /*$thumbnailpath = public_path('storage/avatars/'.$fileNameToStore);
+            $thumbnailpath = public_path('storage/avatars/'.$fileNameToStore);
             $img = Photo::make($thumbnailpath)->resize(80, 80, function($constraint) {
                 $constraint->aspectRatio();
             });
-            $img->save($thumbnailpath);*/
+            $img->save($thumbnailpath);
 
         }
         
