@@ -49,4 +49,8 @@ Route::group(['middleware' => ['auth:api']], function() {
     // avatar
     Route::post('set-avatar-image', 'AvatarController@create');
     Route::post('get-couples-avatar-names', 'AvatarController@loadCouplesAvatars');
+
+    //test
+    Route::post('upload-video', 'GalleryController@uploadVideo');
+
 });

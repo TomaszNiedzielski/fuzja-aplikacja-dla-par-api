@@ -97,4 +97,35 @@ class GalleryController extends Controller
         return response()->json('ok');
 
     }
+
+    public function uploadVideo(Request $request)
+    {
+        //$this->validate($request, [
+            //'photo' => 'video',
+        //]);
+
+        $user = Auth::user();
+       
+        if ($request->hasFile('photo')) {
+        
+            
+            // Get filename with the extension
+            $fileNameWithExt = $request->file('photo')->getClientOriginalName();
+
+            // Get just filename
+            $filename = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
+
+            // Get just ext
+            $extension = $request->file('photo')->getClientOriginalExtension();
+
+            // File name to store
+            $fileNameToStore = $filename.'_'.time().mt_rand( 0, 0xffff ).'.'.$extension;
+
+            // Upload Image
+            $path = $request->file('photo')->storeAs('public/gallery', $fileNameToStore);
+        }
+
+        return response()->json($fileNameToStore);
+
+    }
 }
