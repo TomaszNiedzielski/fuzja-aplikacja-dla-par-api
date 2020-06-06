@@ -17,7 +17,7 @@ class CreateMessagesTable extends Migration
             $table->id();
             $table->integer('from');
             $table->integer('to');
-            $table->string('text')->nullable();
+            $table->text('text')->nullable();
             $table->string('image')->nullable();
             $table->boolean('read')->default(0);
             $table->timestamps();
