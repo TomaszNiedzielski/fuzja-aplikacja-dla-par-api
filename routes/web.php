@@ -26,3 +26,7 @@ Route::get('/pusher', function() {
     //header('HTTP/1.0 403 Forbidden');
     echo("hello");
 });
+
+Route::get('/polityka-prywatnosci', function() {
+    return view('privacyPolicy');
+});
