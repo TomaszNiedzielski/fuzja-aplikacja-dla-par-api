@@ -50,6 +50,10 @@ Route::group(['middleware' => ['auth:api']], function() {
     Route::post('set-avatar-image', 'AvatarController@create');
     Route::post('get-couples-avatar-names', 'AvatarController@loadCouplesAvatars');
 
+    // security
+    Route::post('save-access-code', 'AccessCodeController@saveAccessToken');
+    Route::post('remove-access-code', 'AccessCodeController@removeAccessToken');    
+
     //test
     Route::post('upload-video', 'GalleryController@uploadVideo');
 

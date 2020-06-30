@@ -14,11 +14,13 @@ class NewMessageNotification extends Notification implements ShouldQueue
 
     public $body;
     public $user_name;
+    public $secret_notification;
 
-    public function __construct($message)
+    public function __construct($message, $secret_notification)
     {
         $this->body = $message->text;
         $this->user_name = $message->user->name;
+        $this->secret_notification = $secret_notification;
     }
 
     public function via($notifiable)
@@ -28,13 +30,24 @@ class NewMessageNotification extends Notification implements ShouldQueue
 
     public function toExpoPush($notifiable)
     {
-        return ExpoMessage::create()
-            ->badge(1)
-            ->enableSound()
-            ->title($this->user_name)
-            ->setChannelId('chat-messages')
-            //->ttl(60)
-            ->body($this->body);
+        if($this->secret_notification === false) {
+            return ExpoMessage::create()
+                ->badge(1)
+                ->enableSound()
+                ->title($this->user_name)
+                ->setChannelId('chat-messages')
+                //->ttl(60)
+                ->body($this->body);
+        } else {
+            return ExpoMessage::create()
+                ->badge(1)
+                ->enableSound()
+                ->title($this->user_name)
+                ->setChannelId('chat-messages')
+                //->ttl(60)
+                ->body('Masz nową wiadomość!');
+        }
+        
     }
 
     public function toArray($notifiable)

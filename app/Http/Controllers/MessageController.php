@@ -89,13 +89,24 @@ class MessageController extends Controller
                         ->groupBy('users.id', 'users.name', 'avatars.avatar_name')
                         ->first();
 
+        // check if partner uses access code
+        $access_code = DB::table('access_codes')
+                        ->where('user_id', $user->partner_id)
+                        ->get();
+
+        if(!$access_code->isEmpty()) {
+            $secret_notification = true;
+        } else {
+            $secret_notification = false;
+        }
+
         // run event
         event(new NewMessageEvent($new_message, $partner_id));
 
         // new notification
         $partner = User::where('id', $message->to)->get();
 
-        Notification::send($partner, new NewMessageNotification($new_message));
+        Notification::send($partner, new NewMessageNotification($new_message, $secret_notification));
 
         return response()->json($partner);
     }
