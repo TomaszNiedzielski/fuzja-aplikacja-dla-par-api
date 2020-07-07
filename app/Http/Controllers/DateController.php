@@ -34,7 +34,7 @@ class DateController extends Controller
                     ->select('dates')
                     ->get();
 
-        return response()->json($datesJson[0]->dates);
+        return response()->json($datesJson);
     }
 
 }
