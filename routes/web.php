@@ -30,3 +30,5 @@ Route::get('/pusher', function() {
 Route::get('/polityka-prywatnosci', function() {
     return view('privacyPolicy');
 });
+
+Route::get('check-status-of-payments', 'PaymentController@checkStatusOfPayment');

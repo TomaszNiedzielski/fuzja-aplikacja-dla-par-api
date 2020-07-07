@@ -52,9 +52,19 @@ Route::group(['middleware' => ['auth:api']], function() {
 
     // security
     Route::post('save-access-code', 'AccessCodeController@saveAccessToken');
-    Route::post('remove-access-code', 'AccessCodeController@removeAccessToken');    
+    Route::post('remove-access-code', 'AccessCodeController@removeAccessToken');
+
+    // payments
+    Route::post('check-status-of-payments', 'PaymentController@checkStatusOfPayment');
 
     //test
     Route::post('upload-video', 'GalleryController@uploadVideo');
+
+    // dates
+    Route::post('save-dates-json', 'DateController@saveDates');
+    Route::post('get-dates-json', 'DateController@getDates');  
+    
+    //version
+    Route::post('check-if-new-version-is-available', 'VersionInfoReaderController@getInfo');
 
 });
