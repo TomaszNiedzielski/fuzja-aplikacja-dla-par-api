@@ -12,11 +12,6 @@ class DateController extends Controller
     public function saveDates(Request $request)
     {
         $user = Auth::user();
-        
-        $date = new Date;
-        $date->user_id = $user->id;
-        $date->dates = $request->datesInJson;
-        $date->save();
 
         DB::table('dates')
             ->updateOrInsert(
