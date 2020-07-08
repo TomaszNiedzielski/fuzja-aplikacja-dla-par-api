@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Gallery;
 use DB;
+use Illuminate\Support\Facades\Validator;
+
 
 class GalleryController extends Controller
 {
@@ -14,6 +16,7 @@ class GalleryController extends Controller
         $this->validate($request, [
             'photo' => 'image',
         ]);
+
 
         $user = Auth::user();
        
@@ -86,6 +89,14 @@ class GalleryController extends Controller
 
     public function updateDescription(Request $request) {
         $user = Auth::user();
+
+        $validator = Validator::make($request->all(), [
+            'description' => 'required|string|max:700',
+        ]);
+
+        if($validator->fails()){
+            return response()->json($validator->errors(), 400);
+        }
         
         DB::table('galleries')
             ->where('id', $request->imageId)

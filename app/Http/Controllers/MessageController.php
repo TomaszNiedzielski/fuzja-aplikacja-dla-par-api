@@ -15,6 +15,7 @@ use App\Notifications\NewMessageNotification;
 use Illuminate\Notifications\ChannelManager;
 use App\User;
 use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Facades\Validator;
 
 use Illuminate\Support\Facades\Log;
 
@@ -64,8 +65,11 @@ class MessageController extends Controller
 
     public function create(Request $request)
     {
-        // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! KURWA TU NIE MA ZADNEJ WALIDACJI WIADOMOSCI !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         $user = Auth::user();
+
+        $validator = Validator::make($request->all(), [
+            'message' => 'required|string',
+        ]);
 
         $message = new Message;
         $message->from = $user->id;
