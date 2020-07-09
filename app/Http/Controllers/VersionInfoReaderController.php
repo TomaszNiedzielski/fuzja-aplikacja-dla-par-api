@@ -10,7 +10,7 @@ class VersionInfoReaderController extends Controller
 {
     public function getInfo(Request $request)
     {
-        $user = Auth::user();
+        /*$user = Auth::user();
         $info = 'new_version';
 
         // check if read about version
@@ -28,7 +28,10 @@ class VersionInfoReaderController extends Controller
             return response()->json(array('info' => $info));
         } else {
             return response()->json('Info read.');
-        }
+        }*/
+
+        return response()->json('Info read.');
+        
 
     }
 }
