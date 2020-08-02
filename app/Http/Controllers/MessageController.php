@@ -76,7 +76,8 @@ class MessageController extends Controller
         $message->to = $user->partner_id;
         $message->text = $request->message;
         $message->save();
-
+       
+        // Controller logic here
         $partner_id = $message->to; // need that to make channel
 
         $new_message = DB::table('messages')
@@ -112,7 +113,8 @@ class MessageController extends Controller
 
         Notification::send($partner, new NewMessageNotification($new_message, $secret_notification));
 
-        return response()->json($partner);
+        return response()->json();
+
     }
 
     public function loadUnreadMessages(Request $request)
