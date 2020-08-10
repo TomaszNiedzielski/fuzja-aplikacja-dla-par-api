@@ -31,8 +31,8 @@ Route::get('/polityka-prywatnosci', function() {
     return view('privacyPolicy');
 });
 
-Route::get('check-status-of-payments', 'PaymentController@checkStatusOfPayment');
-
-Route::get('game-generator', function() {
-    return view('gameGenerator');
+Route::get('/regulamin', function() {
+    return view('regulations');
 });
+
+Route::get('check-status-of-payments', 'PaymentController@checkStatusOfPayment');
