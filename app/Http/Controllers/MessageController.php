@@ -244,4 +244,57 @@ class MessageController extends Controller
 
         return response()->json('fuck off');
     }
+
+    public function sendSticker(Request $request)
+    {
+        $user = Auth::user();
+
+        $message = new Message;
+        $message->from = $user->id;
+        $message->to = $user->partner_id;
+        $message->image = $request->sticker;
+        $message->save();
+       
+        // Controller logic here
+        $partner_id = $user->partner_id; // need that to make channel
+
+        $new_message = DB::table('messages')
+                    ->where('id', $message->id)
+                    ->select('id as _id', 'from', 'text', 'image', 'read', 'created_at as createdAt')
+                    ->groupBy('id', 'from', 'text', 'image', 'read', 'created_at')
+                    ->first();
+
+        // add user property to messages
+        $new_message->user = DB::table('users')
+                        ->where('users.id', $new_message->from)
+                        ->leftJoin('avatars', 'avatars.user_id', '=', 'users.id')
+                        ->select('users.id as _id', 'users.name', 'avatars.avatar_name as avatar')
+                        ->groupBy('users.id', 'users.name', 'avatars.avatar_name')
+                        ->first();
+
+        // add info that this is sticker
+        $new_message->sticker = true;
+
+        // check if partner uses access code
+        $access_code = DB::table('access_codes')
+                        ->where('user_id', $user->partner_id)
+                        ->get();
+
+        if(!$access_code->isEmpty()) {
+            $secret_notification = true;
+        } else {
+            $secret_notification = false;
+        }
+
+        // run event
+        event(new NewMessageEvent($new_message, $partner_id));
+
+        // new notification
+        $partner = User::where('id', $message->to)->get();
+
+        Notification::send($partner, new NewMessageNotification($new_message));
+
+        return response()->json();
+
+    }
 }
