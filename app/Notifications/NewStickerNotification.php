@@ -32,7 +32,7 @@ class NewStickerNotification extends Notification implements ShouldQueue
             ->title($this->user_name)
             ->setChannelId('chat-messages')
             //->ttl(60)
-            ->body('Dostałeś naklejkę!');
+            ->body('Wysłano naklejkę!');
     }
 
     public function toArray($notifiable)

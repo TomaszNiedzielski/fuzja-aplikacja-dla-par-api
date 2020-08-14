@@ -12,6 +12,8 @@ use App\Events\UserIsTypingMessageEvent;
 
 use Illuminate\Support\Facades\Auth;
 use App\Notifications\NewMessageNotification;
+use App\Notifications\NewStickerNotification;
+
 use Illuminate\Notifications\ChannelManager;
 use App\User;
 use Illuminate\Support\Facades\Notification;
@@ -292,7 +294,7 @@ class MessageController extends Controller
         // new notification
         $partner = User::where('id', $message->to)->get();
 
-        Notification::send($partner, new NewMessageNotification($new_message));
+        Notification::send($partner, new NewStickerNotification($new_message));
 
         return response()->json();
 
