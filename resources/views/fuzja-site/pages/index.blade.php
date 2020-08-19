@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="content">
-    <p style="font-family: URW Chancery L, cursive" class="content-title">Aplikacja Dla Zakochanych!</p>
+    <p class="content-title">Aplikacja Dla Zakochanych!</p>
     <div style="font-size: 24px; text-align: center">Korzystając z aplikacji zyskujesz dostęp do:</div>                
     <ul>
         <li>
