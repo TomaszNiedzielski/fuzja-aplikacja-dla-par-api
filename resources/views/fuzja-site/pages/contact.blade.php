@@ -2,6 +2,6 @@
 
 @section('content')
     <div class="content">
-        Skontaktuj się z nami pod adresem fuzja.app@gmail.com
+        <p style="text-align: center">Skontaktuj się z nami pod adresem: &nbsp; fuzja.app@gmail.com</p>
     </div>
 @endsection
