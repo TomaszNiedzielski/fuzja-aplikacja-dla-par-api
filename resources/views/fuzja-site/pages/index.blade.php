@@ -20,7 +20,7 @@
             <div class="list-item-content-wrapper">                        
                 <img src="/fuzja-site-assets/chat-screen.png" alt="chat screen" class="screenshot" />
                 <div class="screenshot-description">
-                    Czat pozwala na komunikacje tylko z jedną osobą. Wyposażony został w darmowe naklejki podzielone na kategorie, które lepiej pozwolą wyrazić to co chcesz powiedzieć.
+                    Czat pozwala na komunikację tylko z jedną osobą - twoim partnerem. Wyposażony został w darmowe naklejki podzielone na kategorie, które lepiej pozwolą wyrazić to co chcesz powiedzieć.
                 </div>
             </div>
         </li>
@@ -29,8 +29,8 @@
             <div class="list-item-content-wrapper">                        
                 <img src="/fuzja-site-assets/gallery-screen.png" alt="gallery screen" class="screenshot" />
                 <div class="screenshot-description">
-                    Galeria czyli Wasz wspólny album, dzięki któremu w każdej chwili macie dostęp do waszych zdjęć bez konieczności ich przesyłania przez messagenger.
-                    Do każdego zdjęcia możesz dodać opis, który pomoże lepiej upamietnić daną chwile.
+                    Galeria czyli Wasz wspólny album, dzięki któremu w każdej chwili macie dostęp do waszych zdjęć, bez konieczności ich przesyłania przez messenger.
+                    Do każdego zdjęcia możecie dodawać opisy, które pomogą lepiej upamiętnić daną chwilę.
                 </div>
             </div>
         </li>
@@ -42,7 +42,7 @@
                     <img src="/fuzja-site-assets/game-bottle-screen.png" alt="game screen" class="screenshot" />                        
                 </div>
                 <div class="screenshot-description">
-                    Gra w Prawda czy Wyzwanie nazywana jest również grą w butelkę. Wyposażona została w treści podzielone na poziomy trudności w zależności: soft i hot.
+                    Gra w Prawda czy Wyzwanie nazywana również grą w butelkę wyposażona została w treści podzielone na poziomy trudności: soft i hot.
                     Pozwolą nie tylko na świetną wieczorową rozrywkę, ale także na lepsze poznanie się lepiej nawzajem. 
                 </div>
             </div>
