@@ -2,12 +2,14 @@
     /*color: #ebebeb;*/
     padding: 0px 20px;
     color: rgb(255, 251, 240);
+    letter-spacing: 0.5px;
 }
 .content-title {
     /*text-shadow: 2px 2px rgba(0, 0, 0, 0.5);*/
     font-weight: bold;
     font-size: 46px;
     text-align: center;
+    letter-spacing: 1px;
 }
 .screenshot {
     width: 100%;
@@ -35,6 +37,7 @@
 }
 .screenshot-description {
     margin-top: 10px;
+    
 }
 
 

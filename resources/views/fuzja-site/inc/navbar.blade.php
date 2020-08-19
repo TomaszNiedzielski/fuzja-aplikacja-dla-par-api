@@ -5,6 +5,9 @@
         </li>
         <ul class="navbar-menu">
             <li>
+                <a href="https://play.google.com/store/apps/details?id=com.fuzja_company.fuzja">pobierz</a>
+            </li>
+            <li>
                 <a href="/contact">kontakt</a>
             </li>
         </ul>
