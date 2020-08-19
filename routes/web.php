@@ -15,7 +15,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('fuzja-site.pages.index');
+});
+
+Route::get('/contact', function () {
+    return view('fuzja-site.pages.contact');
 });
 
 Route::get('/pusher', function() {

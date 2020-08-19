@@ -1,0 +1,50 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-image: linear-gradient(rgba(180, 28, 1), rgba(211,46,2,1), rgba(255,158,0,1));
+    /*background-image: linear-gradient(rgba(255,158,0,1), rgba(211,46,2,1),rgba(139,4,0,1));*/
+    background-color: rgb(255, 251, 240);
+    min-height: 100vh;
+    font-family: URW Chancery L, cursive;
+
+}
+.navbar {
+    /*background-image: linear-gradient(to right, rgba(139,4,0,1), rgba(211,46,2,1), rgba(255,158,0,1));*/
+    width: 100%;
+    top: 0;
+    border-bottom: 1px solid #ededed;
+    z-index: 10;
+}
+.navbar ul {
+    justify-content: space-between;
+    padding: 0px 10px;
+}
+.navbar-app-name {
+    font-size: 30px;
+    font-weight: bold;
+    color: white;
+}
+li {
+    list-style: none;
+}
+ul {
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 40px 0px 40px;
+    align-items: center;
+}
+
+.navbar-menu li a {
+    margin-left: 10px;
+    color: white;
+}
+
+@media only screen and (min-width: 700px) {
+
+    .navbar ul {
+        padding: 0px 80px 0px 80px;        
+    }
+    .navbar-menu li a {
+        margin-left: 50px;
+    }
+}
