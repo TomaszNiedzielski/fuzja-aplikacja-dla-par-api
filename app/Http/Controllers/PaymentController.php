@@ -63,6 +63,6 @@ class PaymentController extends Controller
         //return response()->json(['status' => 'pay']);
 
         */
-        return response()->json('debesta');
+        return response()->json('payment');
     }
 }

@@ -59,7 +59,7 @@ Route::group(['middleware' => ['auth:api']], function() {
     Route::post('check-status-of-payments', 'PaymentController@checkStatusOfPayment');
 
     //test
-    Route::post('upload-video', 'GalleryController@uploadVideo');
+    //Route::post('upload-video', 'GalleryController@uploadVideo');
 
     // dates
     Route::post('save-dates-json', 'DateController@saveDates');

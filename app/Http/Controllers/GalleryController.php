@@ -109,7 +109,7 @@ class GalleryController extends Controller
 
     }
 
-    public function uploadVideo(Request $request)
+    /*public function uploadVideo(Request $request)
     {
         //$this->validate($request, [
             //'photo' => 'video',
@@ -138,5 +138,5 @@ class GalleryController extends Controller
 
         return response()->json($fileNameToStore);
 
-    }
+    }*/
 }

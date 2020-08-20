@@ -42,7 +42,7 @@ class DesktopController extends Controller
                 ['user_id' => $user->id],
                 ['desktop_background' => $fileNameToStore]
             );
-            return response()->json(array('desktop_background_name' => $fileNameToStore), 200); //zwroc nazwe spowrotem
+            return response()->json(array('desktop_background_name' => $fileNameToStore), 200);
         }
     }
     public function getDesktopBackgroundName(Request $request) {

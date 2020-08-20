@@ -112,7 +112,6 @@ class MessageController extends Controller
 
         // new notification
         $partner = User::where('id', $message->to)->get();
-
         Notification::send($partner, new NewMessageNotification($new_message, $secret_notification));
 
         return response()->json();
@@ -144,7 +143,7 @@ class MessageController extends Controller
 
         // update read
         $affected = DB::table('messages')
-            ->where('to', $user->id) //tylko te do mnie
+            ->where('to', $user->id) //only messages sent to me
             ->where('read', 0)
             ->update([
                 'read' => 1
@@ -163,7 +162,7 @@ class MessageController extends Controller
         $user = Auth::user();        
         
         $affected = DB::table('messages')
-            ->where('to', $user->id) //tylko te do mnie
+            ->where('to', $user->id) //only messages sent to me
             ->where('read', 0)
             ->update([
                 'read' => 1
@@ -244,7 +243,7 @@ class MessageController extends Controller
         
         event(new UserIsTypingMessageEvent($user->partner_id));
 
-        return response()->json('fuck off');
+        return response()->json('ok');
     }
 
     public function sendSticker(Request $request)
@@ -293,7 +292,6 @@ class MessageController extends Controller
 
         // new notification
         $partner = User::where('id', $message->to)->get();
-
         Notification::send($partner, new NewStickerNotification($new_message));
 
         return response()->json();
